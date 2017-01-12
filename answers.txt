@@ -2,8 +2,8 @@
 # CS3217 Problem Set 1 #
 ########################
 
-# Name: 
-# Matric No:
+# Name: WANG RIWU
+# Matric No: A0135766W
 # Tutor:
 
 ###################################
@@ -14,4 +14,10 @@ Question:
 Dictionary keys must conform to the Hashable protocol. Why is this necessary?
 
 Answer:
-Your Answer here
+The keys must be mapped to an index in the hash table in order to store the values. 
+Hence to ensure that the key type has a "hashValue" property 
+(which fulfills the criteria that variableA == variableB -> variableA.hashValue = variableB.hashValue), 
+it must be a requirement for keys to conform to the Hashable protocol, 
+ensuring that key types without "hashValue" implemented will cause a compile-time error. 
+Without this requirement, keys without .hashValue property will cause a run-time error instead, 
+which is clearly less desirable than a compile-time error.

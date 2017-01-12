@@ -15,9 +15,11 @@ enum StackError: Error {
  - Date: 2017
  */
 struct Stack<T> {
+    var stack = [T]()
     /// Adds an element to the top of the stack.
     /// - Parameter item: The element to be added to the stack
     mutating func push(_ item: T) {
+        stack.insert(item, at: 0)
     }
 
     /// Removes the element at the top of the stack and return it.
@@ -25,7 +27,10 @@ struct Stack<T> {
     /// - Throws: StackError.EmptyStack
     mutating func pop() throws -> T {
         // TODO: Replace/remove the following line in your implementation.
-        throw StackError.emptyStack
+        if isEmpty {
+            throw StackError.emptyStack
+        }
+        return stack.remove(at: 0)
     }
 
     /// Returns, but does not remove, the element at the top of the stack.
@@ -33,23 +38,27 @@ struct Stack<T> {
     /// - Throws: StackError.EmptyStack
     func peek() throws -> T {
         // TODO: Replace/remove the following line in your implementation.
-        throw StackError.emptyStack
+        if isEmpty {
+            throw StackError.emptyStack
+        }
+        return stack[0]
     }
 
     /// The number of elements currently in the stack.
     var count: Int {
         // TODO: Replace/remove the following line in your implementation.
-        return 0
+        return stack.count
     }
 
     /// Whether the stack is empty.
     var isEmpty: Bool {
         // TODO: Replace/remove the following line in your implementation.
-        return false
+        return stack.isEmpty
     }
 
     /// Removes all elements in the stack.
     mutating func removeAll() {
+        stack.removeAll()
     }
 
     /// Returns an array of the elements in their respective pop order, i.e.
@@ -57,6 +66,6 @@ struct Stack<T> {
     /// - Returns: array of elements in their respective pop order
     func toArray() -> [T] {
         // TODO: Replace/remove the following line in your implementation.
-        return [T]()
+        return stack
     }
 }
