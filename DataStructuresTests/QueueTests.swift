@@ -35,6 +35,7 @@ class QueueTests : XCTestCase {
 
     func testCount() {
         var queue = Queue<String>()
+        XCTAssertEqual(queue.count, 0, "The queue's length is not correct!");
         queue.enqueue("1")
         queue.enqueue("2")
         queue.enqueue("3")
@@ -46,6 +47,8 @@ class QueueTests : XCTestCase {
         XCTAssertTrue(queue.isEmpty, "Queue incorrectly detected as non empty");
         queue.enqueue("1")
         XCTAssertFalse(queue.isEmpty, "Queue incorrectly detected as empty");
+        _ = try? queue.dequeue()
+        XCTAssertTrue(queue.isEmpty, "Queue incorrectly detected as non empty");
     }
 
     func testRemoveAll() {
@@ -58,8 +61,10 @@ class QueueTests : XCTestCase {
 
     func testToArray() {
         var queue = Queue<String>()
+        XCTAssertEqual(queue.toArray(), [], "toArray did not return correct array");
         queue.enqueue("1")
+        queue.enqueue("3")
         queue.enqueue("2")
-        XCTAssertEqual(queue.toArray(), ["1", "2"], "toArray did not return correct array");
+        XCTAssertEqual(queue.toArray(), ["1", "3", "2"], "toArray did not return correct array");
     }
 }

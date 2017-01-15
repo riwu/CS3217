@@ -35,6 +35,7 @@ class StackTests : XCTestCase {
 
     func testCount() {
         var stack = Stack<Int>()
+        XCTAssertEqual(stack.count, 0, "The stack's length is not correct!");
         stack.push(1)
         stack.push(2)
         stack.push(3)
@@ -46,6 +47,8 @@ class StackTests : XCTestCase {
         XCTAssertTrue(stack.isEmpty, "Stack incorrectly detected as non empty");
         stack.push(1)
         XCTAssertFalse(stack.isEmpty, "Stack incorrectly detected as empty");
+        _ = try? stack.pop()
+        XCTAssertTrue(stack.isEmpty, "Stack incorrectly detected as non empty");
     }
 
     func testRemoveAll() {
@@ -58,8 +61,10 @@ class StackTests : XCTestCase {
 
     func testToArray() {
         var stack = Stack<Int>()
+        XCTAssertEqual(stack.toArray(), [], "toArray did not return correct array")
         stack.push(1)
+        stack.push(3)
         stack.push(2)
-        XCTAssertEqual(stack.toArray(), [2, 1], "toArray did not return correct array")
+        XCTAssertEqual(stack.toArray(), [2, 3, 1], "toArray did not return correct array")
     }
 }

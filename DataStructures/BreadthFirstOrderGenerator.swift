@@ -10,9 +10,10 @@
 struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProtocol, Sequence where Value.Iterator.Element == Key {
 
     let graph : Dictionary<Key, Value>
-    var currentNode : Key?
+    var nextNode : Key?
     var visitedNodes = Set<Key>()
-    var queue = Queue<Key>()
+    var queue = Queue<Key>() 
+    
     /// Constructs a `BreadthFirstOrderGenerator` with the given graph and start
     /// node.
     /// - Parameters:
@@ -20,25 +21,30 @@ struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorPr
     ///   - start: The start node.
     init(graph: Dictionary<Key, Value>, start: Key) {
         self.graph = graph
-        self.currentNode = start
+        self.nextNode = start
     }
     
     func makeIterator() -> BreadthFirstOrderGenerator<Key, Value> {
         return self
     }
     
+    /// Find an unvisited neighbour of node, add it to the visited set and set nextNode to it
+    /// - Parameter node: The node to check for the neighbours
+    /// - Returns: true if an unvisited neighbour is found
     mutating func visitNeighbour(node: Key) -> Bool {
         for neighbour in graph[node]! {
             if visitedNodes.insert(neighbour).inserted {
-                currentNode = neighbour
+                nextNode = neighbour
                 return true
             }
         }
         return false
     }
-    
+  
+    /// Returns the next node in BFS and sets the next node to visit in next call
+    /// Use a queue to manage the visit order
     mutating func next() -> Key? {
-        guard let result = currentNode else {
+        guard let result = nextNode else {
             return nil
         }
         visitedNodes.insert(result)
@@ -46,7 +52,7 @@ struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorPr
         while !visitNeighbour(node: try! queue.peek()) {
             _ = try! queue.dequeue()
             if queue.isEmpty {
-                currentNode = nil
+                nextNode = nil
                 break
             }
         }

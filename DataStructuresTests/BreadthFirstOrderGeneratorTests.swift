@@ -10,6 +10,10 @@ class BreadthFirstOrderGeneratorTests : XCTestCase {
         XCTAssertEqual(getResultantNodesForGraph(graphFileName, startNode: "A"),
             ["A", "B", "C", "D"],
             "The BFS for \(graphFileName) is wrong!")
+        
+        XCTAssertEqual(getResultantNodesForGraph(graphFileName, startNode: "B"),
+                       ["B", "D", "C"],
+                       "The BFS for \(graphFileName) is wrong!")
     }
 
     func testLinkedListGraph() {
@@ -24,8 +28,23 @@ class BreadthFirstOrderGeneratorTests : XCTestCase {
         XCTAssertEqual(getResultantNodesForGraph(graphFileName, startNode: "A"),
             ["A", "B", "C", "E", "D", "F", "G"],
             "The BFS for \(graphFileName) is wrong!")
+    
+        XCTAssertEqual(getResultantNodesForGraph(graphFileName, startNode: "F"),
+                       ["F", "B", "E", "A", "D", "C", "G"],
+                       "The BFS for \(graphFileName) is wrong!")
     }
 
+    func testExample2Graph() {
+        let graphFileName = "graph_example2"
+        XCTAssertEqual(getResultantNodesForGraph(graphFileName, startNode: "H"),
+                       ["H", "D", "C", "B", "A", "G", "F", "E"],
+                       "The BFS for \(graphFileName) is wrong!")
+        
+        XCTAssertEqual(getResultantNodesForGraph(graphFileName, startNode: "D"),
+                       ["D", "B", "A", "F", "C", "E", "G"],
+                       "The BFS for \(graphFileName) is wrong!")
+    }
+    
     private func getResultantNodesForGraph(_ fileName: String, startNode: String) -> [String] {
         // You do not need to modify this function.
         let path = Bundle.main.path(forResource: fileName, ofType: "plist")!
