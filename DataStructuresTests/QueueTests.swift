@@ -3,7 +3,7 @@
 import XCTest
 @testable import DataStructures
 
-class QueueTests : XCTestCase {
+class QueueTests: XCTestCase {
 
     func testEnqueue() {
         var queue = Queue<String>()
@@ -35,20 +35,20 @@ class QueueTests : XCTestCase {
 
     func testCount() {
         var queue = Queue<String>()
-        XCTAssertEqual(queue.count, 0, "The queue's length is not correct!");
+        XCTAssertEqual(queue.count, 0, "The queue's length is not correct!")
         queue.enqueue("1")
         queue.enqueue("2")
         queue.enqueue("3")
-        XCTAssertEqual(queue.count, 3, "The queue's length is not correct!");
+        XCTAssertEqual(queue.count, 3, "The queue's length is not correct!")
     }
 
     func testIsEmpty() {
         var queue = Queue<String>()
-        XCTAssertTrue(queue.isEmpty, "Queue incorrectly detected as non empty");
+        XCTAssertTrue(queue.isEmpty, "Queue incorrectly detected as non empty")
         queue.enqueue("1")
-        XCTAssertFalse(queue.isEmpty, "Queue incorrectly detected as empty");
+        XCTAssertFalse(queue.isEmpty, "Queue incorrectly detected as empty")
         _ = try? queue.dequeue()
-        XCTAssertTrue(queue.isEmpty, "Queue incorrectly detected as non empty");
+        XCTAssertTrue(queue.isEmpty, "Queue incorrectly detected as non empty")
     }
 
     func testRemoveAll() {
@@ -56,15 +56,15 @@ class QueueTests : XCTestCase {
         queue.enqueue("1")
         queue.enqueue("2")
         queue.removeAll()
-        XCTAssertTrue(queue.isEmpty, "Failed to remove all elements");
+        XCTAssertTrue(queue.isEmpty, "Failed to remove all elements")
     }
 
     func testToArray() {
         var queue = Queue<String>()
-        XCTAssertEqual(queue.toArray(), [], "toArray did not return correct array");
+        XCTAssertEqual(queue.toArray(), [], "toArray did not return correct array")
         queue.enqueue("1")
         queue.enqueue("3")
         queue.enqueue("2")
-        XCTAssertEqual(queue.toArray(), ["1", "3", "2"], "toArray did not return correct array");
+        XCTAssertEqual(queue.toArray(), ["1", "3", "2"], "toArray did not return correct array")
     }
 }

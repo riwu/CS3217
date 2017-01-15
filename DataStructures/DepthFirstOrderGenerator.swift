@@ -9,11 +9,11 @@
  */
 struct DepthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProtocol, Sequence where Value.Iterator.Element == Key {
 
-    let graph : Dictionary<Key, Value>
-    var nextNode : Key?
+    let graph: Dictionary<Key, Value>
+    var nextNode: Key?
     var visitedNodes = Set<Key>()
-    var stack = Stack<Key>() 
-    
+    var stack = Stack<Key>()
+
     /// Constructs a `DepthFirstOrderGenerator` with the given graph and start
     /// node.
     /// - Parameters:
@@ -40,7 +40,7 @@ struct DepthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProt
         }
         return false
     }
-    
+
     /// Returns the next node in DFS and sets the next node to visit in next call
     /// Use a stack to manage the visit order
     mutating func next() -> Key? {

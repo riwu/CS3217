@@ -9,11 +9,11 @@
  */
 struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProtocol, Sequence where Value.Iterator.Element == Key {
 
-    let graph : Dictionary<Key, Value>
-    var nextNode : Key?
+    let graph: Dictionary<Key, Value>
+    var nextNode: Key?
     var visitedNodes = Set<Key>()
-    var queue = Queue<Key>() 
-    
+    var queue = Queue<Key>()
+
     /// Constructs a `BreadthFirstOrderGenerator` with the given graph and start
     /// node.
     /// - Parameters:
@@ -23,11 +23,11 @@ struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorPr
         self.graph = graph
         self.nextNode = start
     }
-    
+
     func makeIterator() -> BreadthFirstOrderGenerator<Key, Value> {
         return self
     }
-    
+
     /// Find an unvisited neighbour of node, add it to the visited set and set nextNode to it
     /// - Parameter node: The node to check for the neighbours
     /// - Returns: true if an unvisited neighbour is found
@@ -40,7 +40,7 @@ struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorPr
         }
         return false
     }
-  
+
     /// Returns the next node in BFS and sets the next node to visit in next call
     /// Use a queue to manage the visit order
     mutating func next() -> Key? {

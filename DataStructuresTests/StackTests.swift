@@ -3,7 +3,7 @@
 import XCTest
 @testable import DataStructures
 
-class StackTests : XCTestCase {
+class StackTests: XCTestCase {
 
     func testPush() {
         var stack = Stack<Int>()
@@ -35,20 +35,20 @@ class StackTests : XCTestCase {
 
     func testCount() {
         var stack = Stack<Int>()
-        XCTAssertEqual(stack.count, 0, "The stack's length is not correct!");
+        XCTAssertEqual(stack.count, 0, "The stack's length is not correct!")
         stack.push(1)
         stack.push(2)
         stack.push(3)
-        XCTAssertEqual(stack.count, 3, "The stack's length is not correct!");
+        XCTAssertEqual(stack.count, 3, "The stack's length is not correct!")
     }
 
     func testIsEmpty() {
         var stack = Stack<Int>()
-        XCTAssertTrue(stack.isEmpty, "Stack incorrectly detected as non empty");
+        XCTAssertTrue(stack.isEmpty, "Stack incorrectly detected as non empty")
         stack.push(1)
-        XCTAssertFalse(stack.isEmpty, "Stack incorrectly detected as empty");
+        XCTAssertFalse(stack.isEmpty, "Stack incorrectly detected as empty")
         _ = try? stack.pop()
-        XCTAssertTrue(stack.isEmpty, "Stack incorrectly detected as non empty");
+        XCTAssertTrue(stack.isEmpty, "Stack incorrectly detected as non empty")
     }
 
     func testRemoveAll() {
@@ -56,7 +56,7 @@ class StackTests : XCTestCase {
         stack.push(1)
         stack.push(2)
         stack.removeAll()
-        XCTAssertTrue(stack.isEmpty, "Failed to remove all elements");
+        XCTAssertTrue(stack.isEmpty, "Failed to remove all elements")
     }
 
     func testToArray() {
