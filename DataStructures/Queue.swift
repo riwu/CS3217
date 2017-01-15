@@ -8,7 +8,6 @@ enum QueueError: Error {
     case emptyQueue
 }
 
-
 /**
  A generic `Queue` class whose elements are first-in, first-out.
 
@@ -26,7 +25,7 @@ struct Queue<T> {
     /// Removes an element from the head of the queue and return it.
     /// - Returns: item at the head of the queue
     /// - Throws: QueueError.EmptyQueue
-    @discardableResult mutating func dequeue() throws -> T {
+    mutating func dequeue() throws -> T {
         if queue.isEmpty {
             throw QueueError.emptyQueue
         }

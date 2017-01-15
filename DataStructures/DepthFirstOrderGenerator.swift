@@ -44,7 +44,7 @@ struct DepthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProt
         visitedNodes.insert(result)
         stack.push(result)
         while !visitNeighbour(node: try! stack.peek()) {
-            try! stack.pop()
+            _ = try! stack.pop()
             if stack.isEmpty {
                 currentNode = nil
                 break

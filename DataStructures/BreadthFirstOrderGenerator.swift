@@ -44,7 +44,7 @@ struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorPr
         visitedNodes.insert(result)
         queue.enqueue(result)
         while !visitNeighbour(node: try! queue.peek()) {
-            try! queue.dequeue()
+            _ = try! queue.dequeue()
             if queue.isEmpty {
                 currentNode = nil
                 break

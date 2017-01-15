@@ -25,7 +25,7 @@ struct Stack<T> {
     /// Removes the element at the top of the stack and return it.
     /// - Returns: element at the top of the stack
     /// - Throws: StackError.EmptyStack
-    @discardableResult mutating func pop() throws -> T {
+    mutating func pop() throws -> T {
         if isEmpty {
             throw StackError.emptyStack
         }
