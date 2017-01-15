@@ -26,8 +26,7 @@ struct Queue<T> {
     /// Removes an element from the head of the queue and return it.
     /// - Returns: item at the head of the queue
     /// - Throws: QueueError.EmptyQueue
-    mutating func dequeue() throws -> T {
-        // TODO: Replace/remove the following line in your implementation.
+    @discardableResult mutating func dequeue() throws -> T {
         if queue.isEmpty {
             throw QueueError.emptyQueue
         }
@@ -38,7 +37,6 @@ struct Queue<T> {
     /// - Returns: item at the head of the queue
     /// - Throws: QueueError.EmptyQueue
     func peek() throws -> T {
-        // TODO: Replace/remove the following line in your implementation.
         if queue.isEmpty {
             throw QueueError.emptyQueue
         }
@@ -47,13 +45,11 @@ struct Queue<T> {
 
     /// The number of elements currently in the queue.
     var count: Int {
-        // TODO: Replace/remove the following line in your implementation.
         return queue.count
     }
 
     /// Whether the queue is empty.
     var isEmpty: Bool {
-        // TODO: Replace/remove the following line in your implementation.
         return queue.isEmpty
     }
 
@@ -66,7 +62,6 @@ struct Queue<T> {
     /// first element in the array is the first element to be dequeued.
     /// - Returns: array of elements in their respective dequeue order
     func toArray() -> [T] {
-        // TODO: Replace/remove the following line in your implementation.
         return queue
     }
 }

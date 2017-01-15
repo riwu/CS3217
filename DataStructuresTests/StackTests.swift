@@ -8,25 +8,29 @@ class StackTests : XCTestCase {
     func testPush() {
         var stack = Stack<Int>()
         stack.push(1)
-
-        XCTAssertEqual(stack.toArray(), [1], "The item is not pushed correctly!")
+        stack.push(3)
+        stack.push(2)
+        XCTAssertEqual(stack.toArray(), [2, 3, 1], "The items are not pushed correctly!")
     }
 
     func testPop() {
         var stack = Stack<Int>()
+        XCTAssertThrowsError(try stack.pop(), "Did not throw error when popping empty stack!")
         stack.push(1)
         stack.push(2)
-        let element = stack.pop()
+        let element = try? stack.pop()
         XCTAssertEqual(element, 2, "The item is not popped correctly!")
         XCTAssertEqual(stack.toArray(), [1], "The item is not popped correctly!")
     }
 
     func testPeek() {
         var stack = Stack<Int>()
+        XCTAssertThrowsError(try stack.peek(), "Did not throw error when peeking empty stack!")
         stack.push(1)
         stack.push(2)
-        let element = stack.peek()
+        let element = try? stack.peek()
         XCTAssertEqual(element, 2, "The item peeked is not correct!")
+        XCTAssertEqual(stack.toArray(), [2, 1], "Peeking altered the stack!")
     }
 
     func testCount() {
@@ -39,9 +43,9 @@ class StackTests : XCTestCase {
 
     func testIsEmpty() {
         var stack = Stack<Int>()
-        XCTAssertEqual(stack.isEmpty, true, "Stack incorrectly detected as non empty");
+        XCTAssertTrue(stack.isEmpty, "Stack incorrectly detected as non empty");
         stack.push(1)
-        XCTAssertEqual(stack.isEmpty, false, "Stack incorrectly detected as empty");
+        XCTAssertFalse(stack.isEmpty, "Stack incorrectly detected as empty");
     }
 
     func testRemoveAll() {
@@ -49,14 +53,13 @@ class StackTests : XCTestCase {
         stack.push(1)
         stack.push(2)
         stack.removeAll()
-        XCTAssertEqual(stack.isEmpty, true, "Failed to remove all elements");
-
+        XCTAssertTrue(stack.isEmpty, "Failed to remove all elements");
     }
 
     func testToArray() {
         var stack = Stack<Int>()
         stack.push(1)
         stack.push(2)
-        XCTAssertEqual(stack.toArray(), [1, 2], "toArray did not return correct array")
+        XCTAssertEqual(stack.toArray(), [2, 1], "toArray did not return correct array")
     }
 }
