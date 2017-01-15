@@ -60,7 +60,7 @@ class DepthFirstOrderGeneratorTests: XCTestCase {
         // You do not need to modify this function.
         let path = Bundle.main.path(forResource: fileName, ofType: "plist")!
         let graph = NSDictionary(contentsOfFile: path)!
-        let dfsGenerator = DepthFirstOrderGenerator(graph: graph as! Dictionary<String, Array<String>>, start: startNode)
+        let dfsGenerator = DepthFirstOrderGenerator(graph: graph as! [String: [String]], start: startNode)
 
         var nodes = [String]()
         for node in dfsGenerator {
@@ -72,8 +72,8 @@ class DepthFirstOrderGeneratorTests: XCTestCase {
     private func getResultantNodesForGraph(_ fileName: String, startNode: Int) -> [Int] {
         let path = Bundle.main.path(forResource: fileName, ofType: "plist")!
         let graph = NSDictionary(contentsOfFile: path)!
-        var graphWithIntKey = Dictionary<Int, Array<Int>>()
-        for (key, value) in graph as! Dictionary<String, Array<Int>> {
+        var graphWithIntKey = [Int: [Int]]()
+        for (key, value) in graph as! [String: [Int]] {
             graphWithIntKey[Int(key)!] = value
         }
         let bfsGenerator = DepthFirstOrderGenerator(graph: graphWithIntKey, start: startNode)

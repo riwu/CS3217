@@ -9,7 +9,7 @@
  */
 struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProtocol, Sequence where Value.Iterator.Element == Key {
 
-    let graph: Dictionary<Key, Value>
+    let graph: [Key: Value]
     var nextNode: Key?
     var visitedNodes = Set<Key>()
     var queue = Queue<Key>()
@@ -19,7 +19,7 @@ struct BreadthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorPr
     /// - Parameters:
     ///   - graph: A dictionary of node to adjacency list pairs.
     ///   - start: The start node.
-    init(graph: Dictionary<Key, Value>, start: Key) {
+    init(graph: [Key: Value], start: Key) {
         self.graph = graph
         self.nextNode = start
     }

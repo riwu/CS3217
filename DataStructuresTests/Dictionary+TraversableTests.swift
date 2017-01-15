@@ -7,7 +7,7 @@ class Dictionary_TraversableTests: XCTestCase {
 
     func testExampleGraph() {
         let graphFileName = "graph_example"
-        let graph = getGraph(graphFileName) as! Dictionary<String, Array<String>>
+        let graph = getGraph(graphFileName) as! [String: [String]]
         let nodeA = "A"
 
         var bfsGenerator = graph.breadthFirstOrderGeneratorFromNode(nodeA)
@@ -39,7 +39,7 @@ class Dictionary_TraversableTests: XCTestCase {
 
     func testExample2Graph() {
         let graphFileName = "graph_example2"
-        let graph = getGraph(graphFileName) as! Dictionary<String, Array<String>>
+        let graph = getGraph(graphFileName) as! [String: [String]]
         let startNode = "H"
 
         var bfsGenerator = graph.breadthFirstOrderGeneratorFromNode(startNode)
