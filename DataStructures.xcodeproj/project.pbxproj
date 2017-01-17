@@ -22,6 +22,8 @@
 		413DC0901A5F660D00CC4AC3 /* BreadthFirstOrderGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413DC08F1A5F660D00CC4AC3 /* BreadthFirstOrderGeneratorTests.swift */; };
 		413DC0951A5FC44E00CC4AC3 /* Dictionary+Traversable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413DC0941A5FC44E00CC4AC3 /* Dictionary+Traversable.swift */; };
 		413DC0981A5FD43300CC4AC3 /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413DC0971A5FD43300CC4AC3 /* QueueTests.swift */; };
+		420C546A1E2DAD0000B6B9B5 /* graph_example2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 420C54691E2DAD0000B6B9B5 /* graph_example2.plist */; };
+		420C546C1E2DAD2100B6B9B5 /* graph_numberkey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 420C546B1E2DAD2100B6B9B5 /* graph_numberkey.plist */; };
 		765CFB9A1C37DE7600FA2E0E /* graph_cycle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD36A2E1A60E90800746BF6 /* graph_cycle.plist */; };
 		765CFB9B1C37DE7600FA2E0E /* graph_example.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD36A301A60E90800746BF6 /* graph_example.plist */; };
 		765CFB9C1C37DE7600FA2E0E /* graph_linkedlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD36A351A60E90800746BF6 /* graph_linkedlist.plist */; };
@@ -57,6 +59,8 @@
 		413DC08F1A5F660D00CC4AC3 /* BreadthFirstOrderGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreadthFirstOrderGeneratorTests.swift; sourceTree = "<group>"; };
 		413DC0941A5FC44E00CC4AC3 /* Dictionary+Traversable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Traversable.swift"; sourceTree = "<group>"; };
 		413DC0971A5FD43300CC4AC3 /* QueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
+		420C54691E2DAD0000B6B9B5 /* graph_example2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = graph_example2.plist; sourceTree = "<group>"; };
+		420C546B1E2DAD2100B6B9B5 /* graph_numberkey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = graph_numberkey.plist; sourceTree = "<group>"; };
 		6DD36A2E1A60E90800746BF6 /* graph_cycle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = graph_cycle.plist; sourceTree = "<group>"; };
 		6DD36A301A60E90800746BF6 /* graph_example.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = graph_example.plist; sourceTree = "<group>"; };
 		6DD36A351A60E90800746BF6 /* graph_linkedlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = graph_linkedlist.plist; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 		413DC0721A5F62C300CC4AC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				420C54691E2DAD0000B6B9B5 /* graph_example2.plist */,
+				420C546B1E2DAD2100B6B9B5 /* graph_numberkey.plist */,
 				6DD36A2E1A60E90800746BF6 /* graph_cycle.plist */,
 				6DD36A301A60E90800746BF6 /* graph_example.plist */,
 				6DD36A351A60E90800746BF6 /* graph_linkedlist.plist */,
@@ -232,6 +238,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				420C546C1E2DAD2100B6B9B5 /* graph_numberkey.plist in Resources */,
+				420C546A1E2DAD0000B6B9B5 /* graph_example2.plist in Resources */,
 				765CFB9A1C37DE7600FA2E0E /* graph_cycle.plist in Resources */,
 				765CFB9B1C37DE7600FA2E0E /* graph_example.plist in Resources */,
 				765CFB9C1C37DE7600FA2E0E /* graph_linkedlist.plist in Resources */,
@@ -398,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = DataStructures/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.matricno.DataStructures;
@@ -410,6 +419,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = DataStructures/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.matricno.DataStructures;
