@@ -15,7 +15,7 @@ enum StackError: Error {
  - Date: 2017
  */
 struct Stack<T> {
-    var stack = [T]()
+    private var stack = [T]()
     /// Adds an element to the top of the stack.
     /// - Parameter item: The element to be added to the stack
     mutating func push(_ item: T) {
@@ -36,10 +36,10 @@ struct Stack<T> {
     /// - Returns: element at the top of the stack
     /// - Throws: StackError.EmptyStack
     func peek() throws -> T {
-        if isEmpty {
+        guard let top = stack.last else {
             throw StackError.emptyStack
         }
-        return stack.last!
+        return top
     }
 
     /// The number of elements currently in the stack.

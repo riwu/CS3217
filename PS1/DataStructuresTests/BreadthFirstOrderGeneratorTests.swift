@@ -33,6 +33,13 @@ class BreadthFirstOrderGeneratorTests: XCTestCase {
                        ["F", "B", "E", "A", "D", "C", "G"],
                        "The BFS for \(graphFileName) is wrong!")
     }
+    
+    func testNonexistentStartNode() {
+        let graphFileName = "graph_example"
+        XCTAssertEqual(getResultantNodesForGraph(graphFileName, startNode: "Z"),
+                       [],
+                       "The BFS for \(graphFileName) is wrong!")
+    }
 
     func testExample2Graph() {
         let graphFileName = "graph_example2"

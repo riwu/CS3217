@@ -4,15 +4,15 @@ import XCTest
 @testable import DataStructures
 
 class QueueTests: XCTestCase {
-
+    
     func testEnqueue() {
         var queue = Queue<String>()
         queue.enqueue("1")
-		queue.enqueue("3")
+        queue.enqueue("3")
         queue.enqueue("2")
         XCTAssertEqual(queue.toArray(), ["1", "3", "2"], "The item is not enqueued correctly!")
     }
-
+    
     func testDequeue() {
         var queue = Queue<String>()
         XCTAssertThrowsError(try queue.dequeue(), "Did not throw error when dequeuing empty queue!")
@@ -22,7 +22,7 @@ class QueueTests: XCTestCase {
         XCTAssertEqual(element, "1", "The item is not dequeued correctly!")
         XCTAssertEqual(queue.toArray(), ["2"], "The item is not dequeued correctly!")
     }
-
+    
     func testPeek() {
         var queue = Queue<String>()
         XCTAssertThrowsError(try queue.peek(), "Did not throw error when peeking empty queue!")
@@ -32,7 +32,7 @@ class QueueTests: XCTestCase {
         XCTAssertEqual(element, "1", "The item peeked is not correct!")
         XCTAssertEqual(queue.toArray(), ["1", "2"], "Peeking altered the queue!")
     }
-
+    
     func testCount() {
         var queue = Queue<String>()
         XCTAssertEqual(queue.count, 0, "The queue's length is not correct!")
@@ -41,7 +41,7 @@ class QueueTests: XCTestCase {
         queue.enqueue("3")
         XCTAssertEqual(queue.count, 3, "The queue's length is not correct!")
     }
-
+    
     func testIsEmpty() {
         var queue = Queue<String>()
         XCTAssertTrue(queue.isEmpty, "Queue incorrectly detected as non empty")
@@ -50,7 +50,7 @@ class QueueTests: XCTestCase {
         _ = try? queue.dequeue()
         XCTAssertTrue(queue.isEmpty, "Queue incorrectly detected as non empty")
     }
-
+    
     func testRemoveAll() {
         var queue = Queue<String>()
         queue.enqueue("1")
@@ -58,7 +58,7 @@ class QueueTests: XCTestCase {
         queue.removeAll()
         XCTAssertTrue(queue.isEmpty, "Failed to remove all elements")
     }
-
+    
     func testToArray() {
         var queue = Queue<String>()
         XCTAssertEqual(queue.toArray(), [], "toArray did not return correct array")

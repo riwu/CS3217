@@ -9,10 +9,10 @@
  */
 struct DepthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProtocol, Sequence where Value.Iterator.Element == Key {
 
-    let graph: [Key: Value]
-    var nextNode: Key?
-    var visitedNodes = Set<Key>()
-    var stack = Stack<Key>()
+    private let graph: [Key: Value]
+    private var nextNode: Key?
+    private var visitedNodes = Set<Key>()
+    private var stack = Stack<Key>()
 
     /// Constructs a `DepthFirstOrderGenerator` with the given graph and start
     /// node.
@@ -21,7 +21,9 @@ struct DepthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProt
     ///   - start: The start node.
     init(graph: [Key: Value], start: Key) {
         self.graph = graph
-        self.nextNode = start
+        if graph[start] != nil {
+            self.nextNode = start
+        }
     }
 
     func makeIterator() -> DepthFirstOrderGenerator<Key, Value> {
@@ -31,8 +33,11 @@ struct DepthFirstOrderGenerator<Key: Hashable, Value: Collection> : IteratorProt
     /// Find an unvisited neighbour of node, add it to the visited set and set nextNode to it
     /// - Parameter node: The node to check for the neighbours
     /// - Returns: true if an unvisited neighbour is found
-    mutating func visitNeighbour(node: Key) -> Bool {
-        for neighbour in graph[node]! {
+    private mutating func visitNeighbour(node: Key) -> Bool {
+        guard let neighbours = graph[node] else {
+            return false
+        }
+        for neighbour in neighbours {
             if visitedNodes.insert(neighbour).inserted {
                 nextNode = neighbour
                 return true

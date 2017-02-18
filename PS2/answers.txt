@@ -1,0 +1,131 @@
+########################
+# CS3217 Problem Set 2 #
+########################
+
+# Name: WANG RIWU
+# Matric No: A0135766W
+# Tutor:
+
+######################################
+# Problem 2: Designing the Graph ADT #
+######################################
+
+###############
+# Problem 2.1 #
+###############
+
+Part 1:
+At the start of the first call to the first constructor that the programmer calls to create the instance,
+the properties has been hardcoded to a valid state (weight = 1.0), 
+hence the representative invariant holds at the start of the first call to the first constructor.
+
+Since constructors can only be called by other constructors (except the first call to the first constructor), and _checkRep() is called at the end of every constructor, 
+it is easy to see (or by the principle of mathematical induction) that 
+the representative invariant will hold at the start of every constructor.
+
+Hence there is no need call _checkRep() at the start of a constructor.
+
+Part 2:
+A few ways:
+1. 
+Declare instances of Edge as constant. Eg. let edge = Edge()
+As explained in lecture 4 slide 29, the instance properties will not be mutable
+unless the property is a reference type.
+2.
+Declare all properties of Edge as constant, hence they will not be mutable
+unless the property is a reference type.
+However, mutating functions within the struct will not be able to modify them as well.
+3.
+Declare all properties as private(set), so that the properties can still be read externally but not modified externally. 
+This approach does not rely on the external user to declare the instance as constant as in method 1.
+
+###############
+# Problem 2.2 #
+###############
+
+My choice of protocol is Hashable.
+Hashable inherits from Equatable, hence types that conform to Hashable must conform to Equatable as well.
+Conforming to Hashable will allow Node and Edge instances to be used as values in a set or keys in a dictionary. 
+This might be useful in certain algorithms. Eg. a search algorithm that needs to efficiently keep track of already visited Node/Edge instances. A Set provides O(k) time complexity for k-element insertion/deletion and check-if-contains operations.
+
+###############
+# Problem 2.3 #
+###############
+
+Node and Edge are intended to be immutable, in which any copies made are meant to represent a different instance. 
+For graph, frequent update to the properties of Graph is expected. 
+Hence implementing Graph as class would improve performance as making a copy of the entire graph on write is expensive.
+
+###############
+# Problem 2.4 #
+###############
+
+Returning nil is preferred over throwing exception when there is only 1 possible cause of failure. (excluding universal errors, such as running out of memory, in which one will not hardcode an exception to be thrown anyway)
+
+Returning nil allows constructs such as optional chaining, nil-coalescing operators, 
+which are more elegant than try-catch blocks.
+
+However, throwing exception should be used when there are multiple possible causes of failure, so that different exception for each cause can be thrown for the calling block to handle appropriately to the different causes.
+
+
+#########################################
+# Problem 3: Implementing the Graph ADT #
+#########################################
+
+###############
+# Problem 3.1 #
+###############
+
+_checkRep() is not placed at the beginning of constructors as explained in Problem 2.1.
+_checkRep() is placed at the start of all methods to ensure that the representative invariant (RI) holds 
+before the method starts operating on its internal fields.
+_checkRep() is placed at the end of all methods to ensure that the RI holds before passing back control to the caller.
+
+The internal fields are marked private, hence theoretically the RI holds at the start of all methods 
+(same reasoning as explained in Problem 2.1). 
+Similarly, certain methods (getters etc) do not intend to modify the internal fields and hence should not alter the RI.
+However, _checkRep() is still called at the start and end of all methods in case a mistake is made or system bugs cause
+unexpected alteration of the internal states. Furthermore, it provides a safeguard against any change in design in the future 
+in which certain/new fields may not be marked as private.
+
+
+###############
+# Problem 3.2 #
+###############
+
+Let V be the number of nodes and E be the number of edges.
+A collection of edges (edge list) use the least space among the 3, with space complexity of O(E), 
+however even a sorted edge list has time complexity of O(log E) to check if 2 nodes are adjacent (using binary search).
+
+Adjacency matrix use the most space among the 3, with a space complexity of O(V^2). 
+Furthermore, it has a time complexity of O(V) to enumerate the neighbours of a node. 
+However, it takes constant time to check if 2 nodes are adjacent.
+
+An adjacency list has space complexity of O(V+E), which means it uses much less space than adjacency matrix for sparse graphs.
+Furthermore, it has the lowest time complexity of O(k) to enumerate k neighbours of a node.
+However, it takes O(k) time to check if a node is adjacent to another node with k neighbours.
+
+I decided to use the adjacency list as it is efficient for implementing Dijkstra’s algorithm, which is commonly used for implementing
+the shortest path algorithm. It also uses constant time for operations such as adding node, adding edge, checking if node exists,
+removing node/edge (with dictionary/set implementation).
+
+
+###############
+# Problem 3.3 #
+###############
+
+The init(isDirected: Bool) constructor will be removed, along with the isDirected field. 
+The if !isDirected block in addEdge, removeEdge and _checkRep will also be removed.
+These removal reduces the complexity of the code as extra care is no longer required when adding or removing the edge 
+to retain the representative invariant that if there’s an edge from node A to B, there must be a matching edge with same weight from node B to A.
+
+There will also be a small time improvement in execution as there is generally less edges to handle. 
+
+###############
+# Problem 3.4 #
+###############
+
+_checkRep() will be changed to ensure that there is at most one edge between any 2 nodes. This can be done by simply iterating through the adjacency list and checking that for the edges of any given set, there is no duplicated destination node.
+Execution speed is reduced during testing as additional check is required in _checkRep(). However in production release for which _checkRep()
+is deactivated, the execution speed should be faster in general as there is less edges to handle (since there is now the constraint that there is at most 1 edge between any 2 nodes).
+

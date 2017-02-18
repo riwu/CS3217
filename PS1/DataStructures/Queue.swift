@@ -15,7 +15,7 @@ enum QueueError: Error {
  - Date: 2017
  */
 struct Queue<T> {
-    var queue = [T]()
+    private var queue = [T]()
     /// Adds an element to the tail of the queue.
     /// - Parameter item: The element to be added to the queue
     mutating func enqueue(_ item: T) {
@@ -29,17 +29,17 @@ struct Queue<T> {
         if queue.isEmpty {
             throw QueueError.emptyQueue
         }
-        return queue.remove(at: 0)
+        return queue.removeFirst()
     }
 
     /// Returns, but does not remove, the element at the head of the queue.
     /// - Returns: item at the head of the queue
     /// - Throws: QueueError.EmptyQueue
     func peek() throws -> T {
-        if queue.isEmpty {
+        guard let head = queue.first else {
             throw QueueError.emptyQueue
         }
-        return queue[0]
+        return head
     }
 
     /// The number of elements currently in the queue.
